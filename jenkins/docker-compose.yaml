@@ -1,0 +1,18 @@
+version: "3.8"
+services:
+  jenkins:
+    build: .
+    env_file:
+      - jenkins.env
+    ports:
+      - 8080:8080
+      - 50000:50000
+    container_name: jenkins
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ./config/casc.yaml:/var/jenkins_home/casc.yaml
+
+volumes:
+  jenkins_home:
+    driver: local
+    name: jenkins_home
